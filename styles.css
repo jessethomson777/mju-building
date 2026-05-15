@@ -331,13 +331,6 @@ section { position: relative; }
   margin-bottom: 32px;
 }
 .hero h1 .accent { color: var(--blue); display: inline-block; }
-@media (max-width: 979px) {
-  .hero h1 {
-    font-stretch: 100%;
-    text-wrap: pretty;
-    font-size: clamp(44px, 13vw, 72px);
-  }
-}
 .hero-lead {
   color: rgba(255,255,255,.7);
   font-size: clamp(16px, 1.3vw, 19px);
