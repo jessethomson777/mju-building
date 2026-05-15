@@ -35,20 +35,12 @@
   const mobile = document.querySelector('.mobile-menu');
   if (toggle && mobile) {
     toggle.addEventListener('click', () => {
-      const isOpen = mobile.classList.contains('open');
       mobile.classList.toggle('open');
-      
-      // Update ARIA attributes for accessibility
-      toggle.setAttribute('aria-expanded', !isOpen);
-      mobile.setAttribute('aria-hidden', isOpen);
-      
       document.body.style.overflow = mobile.classList.contains('open') ? 'hidden' : '';
     });
     mobile.querySelectorAll('a').forEach((a) => {
       a.addEventListener('click', () => {
         mobile.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        mobile.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
       });
     });
@@ -63,14 +55,11 @@
       const isOpen = item.classList.contains('open');
       faqItems.forEach((other) => {
         other.classList.remove('open');
-        const oq = other.querySelector('.faq-q');
         const oa = other.querySelector('.faq-a');
-        oq.setAttribute('aria-expanded', 'false');
         oa.style.maxHeight = '0px';
       });
       if (!isOpen) {
         item.classList.add('open');
-        q.setAttribute('aria-expanded', 'true');
         a.style.maxHeight = a.scrollHeight + 'px';
       }
     });
