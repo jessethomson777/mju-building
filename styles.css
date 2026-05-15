@@ -335,6 +335,7 @@ section { position: relative; }
   .hero h1 {
     font-stretch: 100%;
     text-wrap: pretty;
+    font-size: clamp(44px, 13vw, 72px);
   }
 }
 .hero-lead {
