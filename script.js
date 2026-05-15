@@ -168,12 +168,6 @@
         page: window.location.href,
         submitted_at: new Date().toISOString(),
       };
-      // Photo metadata (don't upload binary blobs to a JSON webhook)
-      const photos = form.querySelector('input[type="file"]');
-      if (photos && photos.files && photos.files.length) {
-        payload.photo_count = photos.files.length;
-        payload.photo_names = [...photos.files].map(f => f.name).join(', ');
-      }
 
       let sent = false;
       try {
@@ -216,29 +210,7 @@
       el.addEventListener('input', () => el.closest('.field').classList.remove('err'));
     });
 
-    // file drop
-    const drop = form.querySelector('.file-drop');
-    const fileInput = form.querySelector('input[type="file"]');
-    if (drop && fileInput) {
-      drop.addEventListener('click', () => fileInput.click());
-      fileInput.addEventListener('change', () => {
-        if (fileInput.files.length) {
-          drop.innerHTML = `<strong>${fileInput.files.length} file(s) attached</strong><br><span>Click to change</span>`;
-        }
-      });
-      ['dragover', 'dragenter'].forEach((ev) =>
-        drop.addEventListener(ev, (e) => { e.preventDefault(); drop.style.borderColor = 'var(--blue)'; })
-      );
-      ['dragleave', 'drop'].forEach((ev) =>
-        drop.addEventListener(ev, (e) => { e.preventDefault(); drop.style.borderColor = ''; })
-      );
-      drop.addEventListener('drop', (e) => {
-        if (e.dataTransfer.files.length) {
-          fileInput.files = e.dataTransfer.files;
-          drop.innerHTML = `<strong>${fileInput.files.length} file(s) attached</strong><br><span>Click to change</span>`;
-        }
-      });
-    }
+    // file drop handler removed (no upload field anymore)
   }
 
   // -------- Smooth scroll for anchor clicks (handle nav offset) --------
